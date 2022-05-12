@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body { font-family: 'Lobster', sans-serif;
+}
+a:active{
+	color:black;
+}
+a:link{
+	color: purple;
+}
+a:visited{
+	color:purple;
+}
+a: hover{
+	color:blue;
+}
+h1 {
+	text-align: center;
+}
+
+body {
+        background-color: salmon;
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 10;
+}
+footer {
+        background-color: yellow;
+	text-align: center;
+	border-top: 1px solid gray;
+	padding: 10px;
+}
+main {
+	max-width: 1200px;
+	margin: 20px auto;
+}
+nav {
+	background-color: blue;
+	border-top: 2px solid darkblue;
+	border-bottom: 2px solid darkblue;
+}
+nav ul {
+	list-style-type: none;
+	text-align: center;
+}
+nav li { 
+    display: inline;
+}
+nav a {
+    text-decoration: none;
+    padding-right:10px;
+}
+nav a:link {
+   color: white;
+}
+nav a:visited{
+   color: white;
+}
+nav a:hover{
+   color: #CCC;
+}
+nav a:active {
+   color: black;
+}
+.home-hero {
+   background-image: url("images/header.jpg");
+   height: 400px;
+   background-size:cover;
+   background-position: center;
+   color: white;
+   padding: 10px 10px 10px 30px;
+   text-shadow: 4px 3px 0 #7A7A7A;  
+}
+/* CSS for smartphones */
+@media only screen and (max-width: 768px) {
+	h1 {
+		font-size: 1.5em;
+	}
+}
+img{
+	display:block;
+	margin:0 
+        auto;
+}

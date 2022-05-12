@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body { 
+     font-family: 'Lobster', sans-serif;
+}
+a:active{
+	color:black;
+}
+a:link{
+	color: purple;
+}
+a:visited{
+	color:purple;
+}
+a: hover{
+	color:blue;
+}
+h1 {
+	text-align: center;
+    background-color: #87cefa;
+}
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	margin: 10;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+footer {
+    background-color: #87cefa;
+	text-align: left;
+	border-top: 1px solid gray;
+	padding: 10px;
+}
+main {
+	max-width: 1200px;
+	margin: 20px auto;
+}
+nav {
+	background-color: blue;
+	border-top: 2px solid darkblue;
+	border-bottom: 2px solid darkblue;
+}
+nav ul {
+	list-style-type: none;
+	text-align: center;
+}
+nav li { 
+    display: inline;
+}
+nav a {
+    text-decoration: none;
+    padding-right:10px;
+}
+nav a:link {
+   color: white;
+}
+nav a:visited{
+   color: white;
+}
+nav a:hover{
+   color: #CCC;
+}
+nav a:active {
+   color: black;
+}
+.footer-bottom {
+    background-color: black;
+    padding: 10px;
+    color: #FEC2EB;
+    text-align: center;
+}
+.footer1000 {
+    padding: 40px 0;
+    color: black;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.gallery {
+    width:100%;
+    height:auto;
+}
+.gallery .gallery-thumbnails img {
+    width:100px;
+    height:75px;
+    margin: 3px 10px 10px 0;
+}
+.preview {
+    display:block;
+    margin:0 auto;
+    width:100%;
+    height:auto;
+}
+.gallery .gallery-thumbnails img:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.gallery .preview img#preview {
+    padding: 1px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto !important;
+    display: block !important;
+}
+.header-image{
+    max-width:100%;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;
+    height:auto;
+}
+.intro{
+    padding: 20px;
+}
+.budgie {
+    display:  block;
+    margin:  0 auto;
+}
+/* CSS for smartphones */
+@media only screen and (max-width: 768px) {
+	h1 {
+		font-size: 1.5em;
+	}
+}
+img{
+	margin:0 
+    auto;
+}

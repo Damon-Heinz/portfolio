@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Damon's portfolio :: JavaScript Game</title>
+<meta name="description" content="This is an example of a meta description. This will often show up in search results so it is important to write a high quality description for each page of a website">
+
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title> Website Template</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
+   <link rel="stylesheet" href="style.css">
+
+   <style>
+      canvas {
+      border:1px solid #d3d3d3;
+      background-color: #f1f1f1;
+      margin-left: 100px;
+      margin-right: 100px;
+      }
+   </style>
+</head>
+<body onload="startGame()">
+   <header>
+<img src="images/DHLogo1.png"  alt="Portfolio Logo" height="192" width="449" class="img-fluid logo">
+   </header>
+<nav class="navbar navbar-expand-sm navbar-light justify-content-center bg-light">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  	</button>
+
+ 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+      			<li class="nav-item">
+<a class="nav-link" href="index.html">Home</a></li>
+      			<li class="nav-item active">
+<a class="nav-link" href="javascript.html">javascript</a></li>
+      			<li class="nav-item">
+<a class="nav-link" href="resume.html">Resume</a></li>
+      			<li class="nav-item">
+<a class="nav-link" href="portfolio.html">Portfolio</a></li>      
+    		</ul>
+  	</div>
+</nav>
+<main>
+<div class="container-row">
+   <div class="col-sm-12">
+      <h2>JavaScript Fish Obstacle Course</h2>
+<p>
+   I made this game while completing the <a href="/portfolio/javascript.html">W3 Schools JavaScript tutorial</a>W3 Then I enhanced the game by making it larger, adding CSS, and a background image to the game.
+</p>
+   <div id="game">
+   <div class="game-controls desktop">
+       <button onmousedown="moveup()" 
+               onmouseup="clearmove()">UP</button>
+        <br><br>
+        <button onmousedown="moveleft()" 
+                onmouseup="clearmove()">LEFT</button>
+        <button onmousedown="moveright()" 
+                onmouseup="clearmove()">RIGHT</button>
+        <br><br>
+        <button onmousedown="movedown()" 
+                onmouseup="clearmove()">DOWN</button>
+        <button onmousedown="replay()" 
+                onmouseup="clearmove()">Play again</button>
+        </div>
+   <div class="game-controls mobile">
+       <button ontouchstart="moveup()"
+               ontouchend="clearMove()">UP</button>
+        <br><br>
+        <button ontouchstart="moveleft()"
+                ontouchend="clearMove()">LEFT</button>
+        <button ontouchstart="moveright()"
+                ontouchend="clearMove()">RIGHT</button>
+        <br><br>
+        <button ontouchstart="movedown()"
+                ontouchend="clearMove()">DOWN</button>
+        <button ontouchstart="replay()"
+                ontouchend="clearMove()">Play again</button>
+        </div>
+    </div>
+</div>
+<!-- https://www.bing.com/images/search?view=detailV2&ccid=yFOno06c&id=E564F7D17CDFB1482429C2EF9E9ABCA922C22580&thid=OIP.yFOno06cu1zh3QR0ljI04QHaFj&mediaurl=https%3A%2F%2Fth.bing.com%2Fth%2Fid%2FR.c853a7a34e9cbb5ce1dd0474963234e1%3Frik%3DgCXCIqm8mp7vwg%26riu%3Dhttp%253a%252f%252fi.ebayimg.com%252fimages%252fi%252f281683882359-0-1%252fs-l1000.jpg%26ehk%3DIQPbH7aG00q8Exk39iwMwFj7byPHvXPWSS7E6ojz1bc%253d%26risl%3D%26pid%3DImgRaw%26r%3D0&exph=750&expw=1000&q=aquarium+stones+images&simid=608039121668473885&form=IRPRST&ck=CD05F38B7630419568A4905650C51174&selectedindex=57&ajaxhist=0&ajaxserp=0&vt=0&sim=11 -->
+<!---
+https://www.bing.com/images/search?view=detailV2&ccid=0zqnCdqY&id=2F38F69CA37F0D2315E090B5631975315115C911&thid=OIP.0zqnCdqY4xOHoWeQ4wHr1gHaDN&mediaurl=https%3a%2f%2fthumbs.dreamstime.com%2fb%2ftop-view-red-fish-orange-koi-10349682.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.d33aa709da98e31387a16790e301ebd6%3frik%3dEckVUTF1GWO1kA%26pid%3dImgRaw%26r%3d0&exph=695&expw=1600&q=fish+images+from+the+top&simid=608018351202715474&FORM=IRPRST&ck=84D7358D80E798C6A8415D131FEFB9FA&selectedIndex=0&qpvt=fish+images+from+the+top&ajaxhist=0&ajaxserp=0
+-->
+<!-- This is the JavaScript for the game-->
+   <script>
+      var myBackground;
+      var myGamePiece;
+      var myObstacles = [];
+      var myScore;
+      var mySound;
+
+   /* Add variables for the height and width */
+      var canvasWidth = 640;
+      var canvasHeight = 360;
+   /* Test to see if I have a screen less than 768 
+      pixels and if so, change the canvas size */
+
+     if (window.innerWidth < 768){
+	 canvasWidth = 300;
+	 canvasHeight= 300;
+    }
+
+      
+      function startGame() {
+          myGamePiece = new component(30, 30, "images/orangeFish.gif", 10, 100, "image");
+          myBackground = new component(656, 360, "images/aquarium-background.jpg", 0, 0, "image");
+	        myGamePiece.gravity = 0.00;
+          myScore = new component("30px", "Consolas", "yellow", 420, 40, "text");
+          mySound = new sound("slap.mp3");
+          myGameArea.start();
+      }
+      
+      var myGameArea = {
+          canvas : document.createElement("canvas"),
+          start : function() {
+              this.canvas.width = canvasWidth;
+              this.canvas.height = canvasHeight;
+              this.context = this.canvas.getContext("2d");
+              var myGame = document.getElementById("game");
+              myGame.insertBefore(this.canvas, myGame.childNodes[0]);        
+              this.frameNo = 0;
+              this.interval = setInterval(updateGameArea, 20);
+           },
+	  stop : function() {
+        	clearInterval(this.interval);
+           },    
+          clear : function() {
+              this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+          }
+      }
+      
+      function component(width, height, color, x, y, type) {
+          this.type = type;
+	  if (type == "image") {
+            this.image = new Image();
+            this.image.src = color;
+    	  }
+          this.score = 0;
+          this.width = width;
+          this.height = height;
+          this.speedX = 0;
+          this.speedY = 0;    
+          this.x = x;
+          this.y = y;
+          this.gravity = 0;
+          this.gravitySpeed = 0;
+          this.update = function() {
+              ctx = myGameArea.context;
+              if (this.type == "text") {
+                  ctx.font = this.width + " " + this.height;
+                  ctx.fillStyle = color;
+                  ctx.fillText(this.text, this.x, this.y);
+              } else {
+                  ctx.fillStyle = color;
+                  ctx.fillRect(this.x, this.y, this.width, this.height);
+              }
+	      if (type == "image") {
+            	ctx.drawImage(this.image, 
+                this.x, 
+                this.y,
+                this.width, this.height);
+              } else {
+            	ctx.fillStyle = color;
+            	ctx.fillRect(this.x, this.y, this.width, this.height);
+              }
+          }
+          this.newPos = function() {
+              this.gravitySpeed += this.gravity;
+              this.x += this.speedX;
+              this.y += this.speedY + this.gravitySpeed;
+              this.hitBottom();
+          }
+          this.hitBottom = function() {
+              var rockbottom = myGameArea.canvas.height - this.height;
+              if (this.y > rockbottom) {
+                  this.y = rockbottom;
+                  this.gravitySpeed = 0;
+              }
+           }
+          this.crashWith = function(otherobj) {
+              var myleft = this.x;
+              var myright = this.x + (this.width);
+              var mytop = this.y;
+              var mybottom = this.y + (this.height);
+              var otherleft = otherobj.x;
+              var otherright = otherobj.x + (otherobj.width);
+              var othertop = otherobj.y;
+              var otherbottom = otherobj.y + (otherobj.height);
+              var crash = true;
+              if ((mybottom < othertop) || (mytop > otherbottom) || (myright < otherleft) || (myleft > otherright)) {
+                  crash = false;
+              }
+              return crash;
+          }
+      }
+      
+      function updateGameArea() {
+          var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+          for (i = 0; i < myObstacles.length; i += 1) {
+              if (myGamePiece.crashWith(myObstacles[i])) {
+	          mySound.play();
+                  myGameArea.stop();
+                  return;
+              } 
+          }
+          myGameArea.clear();
+          myBackground.newPos();
+          myBackground.update();
+          myGameArea.frameNo += 1;
+          if (myGameArea.frameNo == 1 || everyinterval(150)) {
+              x = myGameArea.canvas.width;
+              minHeight = 20;
+              maxHeight = 200;
+              height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+              minGap = 50;
+              maxGap = 200;
+              gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+              myObstacles.push(new component(20, height, "green", x, 0));
+              myObstacles.push(new component(20, x - height - gap, "green", x, height + gap));
+          }
+          for (i = 0; i < myObstacles.length; i += 1) {
+              myObstacles[i].x += -1;
+              myObstacles[i].update();
+          }
+          myGamePiece.newPos();
+          myGamePiece.update();
+          myScore.text="SCORE: " + myGameArea.frameNo;
+          myScore.update();
+      }
+      
+      function everyinterval(n) {
+          if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+          return false;
+      }
+      
+     function moveup() {
+    	 myGamePiece.speedY = -1; 
+     }
+
+     function movedown() {
+    	   myGamePiece.speedY = 1; 
+     }
+     function moveleft() {
+    	   myGamePiece.speedX = -1; 
+     }
+     function moveright() {
+    	   myGamePiece.speedX = 1; 
+     }
+     function clearmove() {
+    	   myGamePiece.speedX = 0; 
+    	   myGamePiece.speedY = 0; 
+     }
+      function replay() {
+         startGame();
+     }
+     function sound(src) {
+    	this.sound = document.createElement("audio");
+    	this.sound.src = src;
+    	this.sound.setAttribute("preload", "auto");
+    	this.sound.setAttribute("controls", "none");
+    	this.sound.style.display = "none";
+    	document.body.appendChild(this.sound);
+    	this.play = function(){
+        	this.sound.play();
+    	}
+    	this.stop = function(){
+        	this.sound.pause();
+    	}    
+    }
+   </script>
+</div>
+</main>
+<footer>
+<div class="row icons">
+            <div class="col-sm-4" id="footer-icons">
+               <a href="Damon-Heinz.github.io">
+                 <p>
+                <i class="fa fa-github" aria-hidden="true"></i>
+			GitHub
+                 </p>
+              </a>
+             </div>
+             <div class="col-sm-4" id="footer-icons">
+              <a href="linkedin.com/in/damon-heinz-001143239">
+                <p>
+                   <i class="fa fa-linkedin-square" aria-hidden="true"> </i>
+                      Linked In 
+                </p>
+             </a>
+            </div>
+            <div class="col-sm-4" id="footer-icons">
+             <a href="mailto:damon.heinz@my.saintpaul.edu">
+                <p>
+                  <i class="fa fa-share" aria-hidden="true"></i>
+                     Email me
+                </p>
+            </a>
+        </div>
+</div>
+   <div class="footer-bottom">            
+	     <small>©Copyright Damon Heinz.</small>
+    </div>
+</footer>
+<!--jQuery, Popper, and Bootstrap Javascript files-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

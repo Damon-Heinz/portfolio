@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+body { 
+    font-family: 'Lobster', sans-serif;
+    margin:  10px 0;
+}
+a:active{
+	color:black;
+}
+a:link{
+	color: purple;
+}
+a:visited{
+	color:purple;
+}
+a: hover{
+	color:blue;
+}
+h1 {
+	text-align: center;
+}
+.aboutMe{
+   float: left;
+}
+footer {
+        border-top: 1px solid gray;
+        clear: both;
+        padding: 10px;
+	text-align: center;
+}
+main {
+	max-width: 1000px;
+	min-height: 350px;
+	margin: 20px auto;
+	padding: 10px;
+}
+nav {
+    background: rgb(252,100,62);
+    background: linear-gradient(90deg, rgba(252,100,62,1) 12%, rgba(245,238,28,1) 68%);
+	border-top: 2px solid darkblue;
+	border-bottom: 2px solid darkblue;
+	text-align: center;
+}
+nav ul {
+ margin: 0 auto;
+}
+nav li { 
+    display: inline;
+    background-color: #c6c6c6;
+    padding: 8px 10px;
+    border-radius: 50px;
+}
+nav li:hover{
+    background-color: #dddddd;
+}
+nav a {
+    text-decoration: none;
+    padding-right:10px;
+}
+nav a:link {
+   color: white;
+}
+nav a:visited{
+   color: white;
+}
+nav a:hover{
+   color: #CCC;
+}
+nav a:active {
+   color: black;
+}
+table {
+    border-collapse:collapse;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size:12px;
+}
+th , td {
+   padding: 10px;
+   text-align: left;
+   width:200px;
+}
+img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  margin-left: 20px;
+}
+p {
+   text-indent: 3px
+}
+form{
+	border: 1px solid purple;
+	max-width:350px;
+        margin:0 auto;
+	padding: 5px;
+	background-color:pink;
+}
+label {
+	float:left;
+	width:8em;
+	padding-right:1em;
+}
+input, textarea {
+	margin-bottom:1em;
+	display:block;
+}
+input[type=submit] {
+	display: block;
+	background-color:lightgray;
+}
+.footer1000 {
+    padding: 40px 0;
+    color: #ffffff;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.footer-bottom {
+    background: rgb(252,100,62);
+    background: linear-gradient(90deg, rgba(252,100,62,1) 12%, rgba(245,238,28,1) 68%);
+	border-top: 2px solid darkblue;
+	border-bottom: 2px solid darkblue;
+        max-width: 100%;
+	text-align: center;
+
+}
+.game{
+	margin: 300px;
+	width:480px;
+}
+.game-controls{
+	text-align:center;
+	width:480px;
+}
+.header img {
+  float: left;
+  margin-left: 20px;
+  margin: 0 auto;
+  display:block;
+}
+.logo{
+   margin: 0 auto;
+   display: block;
+}
+.mobile {
+    display: none;
+}
+.my-image{
+	float: left;
+	max-width: 50%;
+	margin-right: 30px;
+}
+
+/* CSS for smartphones */
+@media only screen and (max-width: 768px) {
+
+	h1 {
+		font-size: 1.5em;
+	}
+        .desktop {
+          display: none;
+       }
+       .mobile {
+           display: block;
+           touch-action: manipulation;
+       }
+}
